@@ -34,15 +34,16 @@ complicated, a line by line explanation follows below.
     Code that goes along with the Airflow tutorial located at:
     https://github.com/apache/airflow/blob/master/airflow/example_dags/tutorial.py
     """
+    import airflow
     from airflow import DAG
     from airflow.operators.bash_operator import BashOperator
-    from datetime import datetime, timedelta
+    from datetime import timedelta
 
 
     default_args = {
         'owner': 'airflow',
         'depends_on_past': False,
-        'start_date': datetime(2015, 6, 1),
+        'start_date': airflow.utils.dates.days_ago(2),
         'email': ['airflow@example.com'],
         'email_on_failure': False,
         'email_on_retry': False,
